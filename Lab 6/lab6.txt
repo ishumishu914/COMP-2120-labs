@@ -1,0 +1,174 @@
+Script started on 2021-11-07 18:13:06-05:00 [TERM="xterm-256color" TTY="/dev/tty1" COLUMNS="102" LINES="34"]
+]0;ishrat@DESKTOP-DG3E6II: /mnt/c/Year 2/COMP 2120/Lab 6[01;32mishrat@DESKTOP-DG3E6II[00m:[01;34m/mnt/c/Year 2/COMP 2120/Lab 6[00m$ cat Average.java
+import java.util.Scanner;
+public class Average
+{
+    private int[] data = new int[5];
+    private double mean;
+
+    public Average()
+    {
+        Scanner keyboard = new Scanner(System.in);
+        for (int i = 0; i < 5; i++) 
+        {
+            System.out.print("Enter score for test #" + (i+1) + ": ");
+            data[i] = keyboard.nextInt();
+        }
+        selectionSort();
+        calculateMean();
+        keyboard.close();
+    }
+
+    public double calculateMean()
+    {
+        double tot=0;
+        for (int i = 0; i < data.length; i++) 
+        {
+            tot += data[i];
+        }
+        mean = tot/5;
+        return mean;
+    }
+
+    public void selectionSort()
+    {
+        int temp=0;
+
+        for (int i = 0; i < 5-1; i++) 
+        {
+            for (int j = 0; j < (5-i-1); j++) 
+            {
+                if (data[j] < data[j+1]) 
+                {
+                    temp = data[j];
+                    data[j] = data[j+1];
+                    data[j+1] = temp;    
+                }
+            }
+        }
+    }
+
+    public String toString()
+    {
+        String printData = "";
+        System.out.print("The sorted values are:");
+        for(int i = 0; i < data.length; i++)
+        {
+            printData += (data[i] + " ");
+        }
+        printData = printData + "\nThe average of the scores is " + mean;
+        return printData;
+    }
+}]0;ishrat@DESKTOP-DG3E6II: /mnt/c/Year 2/COMP 2120/Lab 6[01;32mishrat@DESKTOP-DG3E6II[00m:[01;34m/mnt/c/Year 2/COMP 2120/Lab 6[00m$ cat Average.javaD.javar.javai.javav.javae.javar.java
+public class AverageDriver 
+{
+    public static void main(String[] args) 
+    {
+        Average object = new Average();
+        System.out.println(object.toString());
+    }    
+}
+]0;ishrat@DESKTOP-DG3E6II: /mnt/c/Year 2/COMP 2120/Lab 6[01;32mishrat@DESKTOP-DG3E6II[00m:[01;34m/mnt/c/Year 2/COMP 2120/Lab 6[00m$ cat AverageDriver.java[C[C[C[1P AverageDriver.java[1P AverageDriver.java[1P AverageDriver.javaj AverageDriver.javaa AverageDriver.javav AverageDriver.javaa AverageDriver.javac AverageDriver.java
+]0;ishrat@DESKTOP-DG3E6II: /mnt/c/Year 2/COMP 2120/Lab 6[01;32mishrat@DESKTOP-DG3E6II[00m:[01;34m/mnt/c/Year 2/COMP 2120/Lab 6[00m$ javac AverageDriver.java[C[1P AverageDriver.java
+Enter score for test #1: 89
+Enter score for test #2: 78
+Enter score for test #3: 75
+Enter score for test #4: 69
+Enter score for test #5: 95
+The sorted values are:95 89 78 75 69 
+The average of the scores is 81.2
+]0;ishrat@DESKTOP-DG3E6II: /mnt/c/Year 2/COMP 2120/Lab 6[01;32mishrat@DESKTOP-DG3E6II[00m:[01;34m/mnt/c/Year 2/COMP 2120/Lab 6[00m$ cat C[KSong.java
+/*
+   This class stores data about a song.
+*/
+
+public class Song
+{
+   private String title;   // The song's title
+   private String artist;  // The song's artist
+
+   /**
+      Constructor
+      @param title A reference to a String object
+                   containing the song's title.
+      @param artist A reference to a String object
+                    containing the song's artist.
+   */
+
+   public Song(String title, String artist)
+   {
+      this.title = title;
+      this.artist = artist;
+   }
+
+   /**
+      The toString method
+      @return A String object containing the name
+              of the song and the artist.
+   */
+
+   public String toString()
+   {
+      return title + " by " + artist + "\n";
+   }
+}]0;ishrat@DESKTOP-DG3E6II: /mnt/c/Year 2/COMP 2120/Lab 6[01;32mishrat@DESKTOP-DG3E6II[00m:[01;34m/mnt/c/Year 2/COMP 2120/Lab 6[00m$ cat Song.java[1P.java[1P.java[1P.java[1P.javaC.javao.javam.javap.javaa.javac.javat.javaD.javai.javas.javac.java
+import java.io.*;
+
+/**
+   This program creates a list of songs for a CD
+   by reading from a file.
+*/
+
+public class CompactDisc
+{
+   public static void main(String[] args)throws IOException
+   {
+      FileReader file = new FileReader("Classics.txt");
+      BufferedReader input = new BufferedReader(file);
+      //File f = new File("Classics.txt");
+      //Scanner inputFile = new Scanner(f);
+
+      String title;
+      String artist;
+
+      // ADD LINES FOR TASK #3 HERE
+      // Declare an array of Song objects, called cd, with a size of 6
+      Song[] cd = new Song[6];
+
+      for (int i = 0; i < cd.length; i++)
+      {
+         title = input.readLine();
+         artist = input.readLine();
+
+         // ADD LINES FOR TASK #3 HERE
+         // Fill the array by creating a new song with
+         // the title and artist and storing it in the
+         // appropriate position in the array
+         Song s =  new Song(title, artist);
+         cd[i] = s; 
+      }
+      input.close();
+
+      System.out.println("Contents of Classics:");
+      for (int i = 0; i < cd.length; i++)
+      {
+         // ADD LINES FOR TASK #3 HERE
+         // Print the contents of the array to the console
+         System.out.print(cd[i]);
+      }
+      System.out.println();
+   }
+}]0;ishrat@DESKTOP-DG3E6II: /mnt/c/Year 2/COMP 2120/Lab 6[01;32mishrat@DESKTOP-DG3E6II[00m:[01;34m/mnt/c/Year 2/COMP 2120/Lab 6[00m$ cat CompactDisc.java[C[1P CompactDisc.java[1P CompactDisc.java[1P CompactDisc.javaj CompactDisc.javaa CompactDisc.javav CompactDisc.javaa CompactDisc.javac CompactDisc.java
+]0;ishrat@DESKTOP-DG3E6II: /mnt/c/Year 2/COMP 2120/Lab 6[01;32mishrat@DESKTOP-DG3E6II[00m:[01;34m/mnt/c/Year 2/COMP 2120/Lab 6[00m$ javac CompactDisc.java[2Pcat[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[2@javac[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P CompactDisc.java
+Contents of Classics:
+Ode to Joy by Bach
+The Sleeping Beauty by Tchaikovsky
+Lullaby by Brahms
+Canon by Bach
+Symphony No. 5 by Beethoven
+The Blue Danube Waltz by Strauss
+
+]0;ishrat@DESKTOP-DG3E6II: /mnt/c/Year 2/COMP 2120/Lab 6[01;32mishrat@DESKTOP-DG3E6II[00m:[01;34m/mnt/c/Year 2/COMP 2120/Lab 6[00m$ exit
+exit
+
+Script done on 2021-11-07 18:14:22-05:00 [COMMAND_EXIT_CODE="0"]
